@@ -316,6 +316,7 @@ public class OnboardingRestController {
                     // last_error/attempts stay server-side - they can carry Kubernetes client internals.
                     new WorkspaceStatusResponse(
                         job.getStatus().name(),
+                        tenantWorkspaceProvisioningService.findAccountName(job.getCompanyEmail()),
                         job.getNamespace(),
                         job.getCompletedAt(),
                         job.getUpdatedAt())))

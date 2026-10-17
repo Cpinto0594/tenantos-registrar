@@ -5,6 +5,7 @@ import com.tenantos.registrar.entity.TenantsRegistration;
 import com.tenantos.registrar.enums.ProvisioningStep;
 import com.tenantos.registrar.enums.TenantsRegistrationStatus;
 import com.tenantos.registrar.repository.TenantWorkspaceProvisioningRepository;
+import com.tenantos.registrar.repository.TenantsRegistrationRepository;
 import com.tenantos.registrar.services.tenant.TenantProvisioningStep;
 import org.slf4j.MDC;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,7 @@ public class TenantWorkspaceProvisioningService {
   private int maxAttempts;
 
   private final TenantWorkspaceProvisioningRepository provisioningRepository;
+  private final TenantsRegistrationRepository tenantsRegistrationRepository;
   private final TenantWorkspaceProvisioningStore store;
   private final List<TenantProvisioningStep> stepBeans;
   private final SecureRandom secureRandom = new SecureRandom();
@@ -131,6 +133,14 @@ public class TenantWorkspaceProvisioningService {
   /** Looks up a job by its capability token, for the public status endpoint. */
   public Optional<TenantWorkspaceProvisioning> findByProvisioningId(String provisioningId) {
     return provisioningRepository.findById(provisioningId);
+  }
+
+  /** Account name the job is provisioning, for the public status endpoint; null if unset. */
+  public String findAccountName(String companyEmail) {
+    return tenantsRegistrationRepository
+        .findById(companyEmail)
+        .map(TenantsRegistration::getAccountName)
+        .orElse(null);
   }
 
   /** Looks up a tenant's job, so the registration response can hand back its provisioning id. */

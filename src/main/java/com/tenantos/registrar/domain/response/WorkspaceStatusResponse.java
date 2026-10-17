@@ -19,6 +19,8 @@ public record WorkspaceStatusResponse(
               "WORKSPACE_FAILED"
             })
         String status,
+    @Schema(description = "Account name of the tenant being provisioned", example = "Acme Inc")
+        String accountName,
     @Schema(description = "Kubernetes namespace, once provisioned", example = "tenant-acme")
         String namespace,
     @Schema(description = "When the workspace became ready; null until then") Instant completedAt,
