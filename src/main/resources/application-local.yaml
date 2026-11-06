@@ -1,7 +1,7 @@
 spring:
   #DATABASE CONFIGURATION
   datasource:
-    url: jdbc:postgresql://192.168.40.10:54321/tenantos_registrar?sslmode=disable&ApplicationName=tenantos-registrar-local
+    url: jdbc:postgresql://192.168.40.120:5432/tenantos_registrar?sslmode=disable&ApplicationName=tenantos-registrar-local
     username: tenantos-master
     password: c4rl0sP@ssw0rds
     driver-class-name: org.postgresql.Driver
@@ -62,11 +62,11 @@ workspace:
 tenant:
   database:
     enabled: true
-    admin-url: jdbc:postgresql://192.168.40.10:54322/postgres
+    admin-url: jdbc:postgresql://192.168.40.120:5432/postgres
     admin-user: tenantos-tenant-admin
     admin-password: c4rl0sP@ssw0rds
-    host: 192.168.40.10
-    port: 54322
+    host: 192.168.40.120
+    port: 5432
     secret:
       kubernetes-enabled: true
       name-prefix: tenantos/tenant

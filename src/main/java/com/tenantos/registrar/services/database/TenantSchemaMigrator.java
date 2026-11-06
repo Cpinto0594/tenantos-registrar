@@ -12,8 +12,9 @@ import org.springframework.stereotype.Service;
  * Runs this tenant's own Flyway migration chain against its freshly-provisioned database: the
  * identity schema (V1, plain SQL under {@code db/tenants_migration}), the registration user seed
  * (V2, a Java migration carrying that user's data - see {@link V2__SeedRegistrationUser}), the
- * workflow resource schema (V3, plain SQL), then the default workspace seed (V4, a Java migration
- * carrying the tenant's id - see {@link V4__SeedDefaultWorkspace}).
+ * workflow resource schema (V3, plain SQL), the default workspace seed (V4, a Java migration
+ * carrying the tenant's id - see {@link V4__SeedDefaultWorkspace}), then the seed data (V5) and the
+ * connection types seed (V6), both plain SQL.
  *
  * <p>Independent of the registrar's own Flyway instance - Spring Boot's autoconfigured bean is wired
  * to {@code spring.datasource} only. Each tenant database gets its own {@code
