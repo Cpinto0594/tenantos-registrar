@@ -171,7 +171,7 @@ jobs:
         with:
           npm-registry-host: ${{ vars.NPM_REGISTRY_HOST }}
           npm-token: ${{ secrets.SKAFFOLDER_FORGEJO_TOKEN }}
-          registry-host: ${{ env.REGISTRY }}
+          registry-host: ${{ env.REGISTRY }}  
           configs-repo: ${{ env.CONFIGS_REPO }}
           configs-token: ${{ secrets.ACTIONS_TOKEN }}
 
